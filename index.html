@@ -11,176 +11,145 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
-
-    <script>
-
-      var tablinks = document.getElementsByClassName("tab-links");
-      var tabcontents = document.getElementsByClassName("tab-contents");
-  
-      function opentab(tabname){
-          for(tablink of tablinks){
-              tablink.classList.remove("active-link");
-          }
-          for(tabcontent of tabcontents){
-              tabcontent.classList.remove("active-tab");
-          }
-          event.currentTarget.classList.add("active-link");
-          document.getElementById(tabname).classList.add("active-tab");
-      }
-    </script>
-    
-    <script>
-    
-        var sidemenu = document.getElementById("sidemenu");
-    
-        function openmenu(){
-            sidemenu.style.right = "0";
-        }
-        function closemenu(){
-            sidemenu.style.right = "-200px";
-        }
-    
-    </script>
-    
-    <!--GSAP ANIMATIONS-->
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    
-    
-    <script>
-    
-        /*GSAP*/
-    
-        gsap.registerPlugin(ScrollTrigger);
-    
-        gsap.from(".header-text", {
-            opacity: 0,
-            y: 50,
-            stagger: 0.2,
-            duration: 1,
-            ease: "power2.out",
-            scrollTrigger: {
-                trigger: "#header", 
-                start: "top center",
-                end: "center center",
-                scrub: false,
-            },
-        });
-    
-        gsap.from(".about-col-1", {
-            opacity: 0,
-            y: 50,
-            stagger: 0.01,
-            duration: 0.5,
-            ease: "power2.out",
-            scrollTrigger: {
-                trigger: "#about",
-                start: "top center",
-                end: "center center",
-                scrub: false,
-            },
-        });
-    
-        gsap.from(".about-col-2 p", {
-            opacity: 0,
-            y: 50,
-            stagger: 0.01,
-            duration: 0.5,
-            ease: "power2.out",
-            scrollTrigger: {
-                trigger: "#about",
-                start: "top center",
-                end: "center center",
-                scrub: false,
-            },
-        });
-    
-        gsap.from(".about-col-2 .tab-titles", {
-            opacity: 0,
-            y: 50,
-            stagger: 0.01,
-            duration: 0.5,
-            ease: "power2.out",
-            scrollTrigger: {
-                trigger: "#about",
-                start: "top center",
-                end: "center center",
-                scrub: false,
-            },
-        });
-    
-        gsap.from(".about-col-2 .tab-contents", {
-            opacity: 0,
-            y: 50,
-            stagger: 0.01,
-            duration: 0.5,
-            ease: "power2.out",
-            scrollTrigger: {
-                trigger: "#about",
-                start: "top center",
-                end: "center center",
-                scrub: false,
-            },
-        });
-    
-        gsap.from(".services-list div", {
-            opacity: 0,
-            y: 50,
-            stagger: 0.2,
-            duration: 0.7,
-            ease: "power2.out",
-            scrollTrigger: {
-                trigger: "#services",
-                start: "top center",
-                end: "center center",
-                scrub: false,
-            },
-        });
-    
-        gsap.from(".work", {
-            opacity: 0,
-            y: 50,
-            stagger: 0.2,
-            duration: 0.5,
-            ease: "power2.out",
-            scrollTrigger: {
-                trigger: "#portfolio",
-                start: "top center",
-                end: "center center",
-                scrub: false,
-            },
-        });
-    
-        gsap.from(".contact-right", {
-            opacity: 0,
-            y: 50,
-            stagger: 0.2,
-            duration: 0.5,
-            ease: "power2.out",
-            scrollTrigger: {
-                trigger: "#contact",
-                start: "top center",
-                end: "center center",
-                scrub: false,
-            },
-        });
-    
-        gsap.from("#contact-left", {
-            opacity: 0,
-            y: 50,
-            stagger: 0.2,
-            duration: 0.5,
-            ease: "power2.out",
-            scrollTrigger: {
-                trigger: "#contact",
-                start: "top center",
-                end: "center center",
-                scrub: false,
-            },
-        });
-    
-    </script>
-        
   </body>
+  
+  <!--GSAP ANIMATIONS-->
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  
+  
+  <script>
+  
+      /*GSAP*/
+  
+      gsap.registerPlugin(ScrollTrigger);
+  
+      gsap.from(".header-text", {
+          opacity: 0,
+          y: 50,
+          stagger: 0.2,
+          duration: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+              trigger: "#header", 
+              start: "top center",
+              end: "center center",
+              scrub: false,
+          },
+      });
+  
+      gsap.from(".about-col-1", {
+          opacity: 0,
+          y: 50,
+          stagger: 0.01,
+          duration: 0.5,
+          ease: "power2.out",
+          scrollTrigger: {
+              trigger: "#about",
+              start: "top center",
+              end: "center center",
+              scrub: false,
+          },
+      });
+  
+      gsap.from(".about-col-2 p", {
+          opacity: 0,
+          y: 50,
+          stagger: 0.01,
+          duration: 0.5,
+          ease: "power2.out",
+          scrollTrigger: {
+              trigger: "#about",
+              start: "top center",
+              end: "center center",
+              scrub: false,
+          },
+      });
+  
+      gsap.from(".about-col-2 .tab-titles", {
+          opacity: 0,
+          y: 50,
+          stagger: 0.01,
+          duration: 0.5,
+          ease: "power2.out",
+          scrollTrigger: {
+              trigger: "#about",
+              start: "top center",
+              end: "center center",
+              scrub: false,
+          },
+      });
+  
+      gsap.from(".about-col-2 .tab-contents", {
+          opacity: 0,
+          y: 50,
+          stagger: 0.01,
+          duration: 0.5,
+          ease: "power2.out",
+          scrollTrigger: {
+              trigger: "#about",
+              start: "top center",
+              end: "center center",
+              scrub: false,
+          },
+      });
+  
+      gsap.from(".services-list div", {
+          opacity: 0,
+          y: 50,
+          stagger: 0.2,
+          duration: 0.7,
+          ease: "power2.out",
+          scrollTrigger: {
+              trigger: "#services",
+              start: "top center",
+              end: "center center",
+              scrub: false,
+          },
+      });
+  
+      gsap.from(".work", {
+          opacity: 0,
+          y: 50,
+          stagger: 0.2,
+          duration: 0.5,
+          ease: "power2.out",
+          scrollTrigger: {
+              trigger: "#portfolio",
+              start: "top center",
+              end: "center center",
+              scrub: false,
+          },
+      });
+  
+      gsap.from(".contact-right", {
+          opacity: 0,
+          y: 50,
+          stagger: 0.2,
+          duration: 0.5,
+          ease: "power2.out",
+          scrollTrigger: {
+              trigger: "#contact",
+              start: "top center",
+              end: "center center",
+              scrub: false,
+          },
+      });
+  
+      gsap.from("#contact-left", {
+          opacity: 0,
+          y: 50,
+          stagger: 0.2,
+          duration: 0.5,
+          ease: "power2.out",
+          scrollTrigger: {
+              trigger: "#contact",
+              start: "top center",
+              end: "center center",
+              scrub: false,
+          },
+      });
+  
+  </script>
 </html>

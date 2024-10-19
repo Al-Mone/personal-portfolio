@@ -1,5 +1,108 @@
+import React, { useState, useEffect, useRef } from "react";
 
 function App() {
+  const [activeTab, setActiveTab] = useState("skills");
+  const headerRef = useRef(null);
+  const aboutRef = useRef(null);
+  const contactLeftRef = useRef(null);
+  const contactRightRef = useRef(null);
+
+  useEffect(() => {
+    // Access gsap and ScrollTrigger from the global window object
+    if (window.gsap && window.ScrollTrigger) {
+      const { gsap, ScrollTrigger } = window;
+
+      // Register the ScrollTrigger plugin
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Animate the header section
+      if (headerRef.current) {
+        gsap.from(headerRef.current, {
+          opacity: 0,
+          y: 50,
+          duration: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: "top center",
+            end: "center center",
+            scrub: false,
+          },
+        });
+      }
+
+      // Animate the about section
+      if (aboutRef.current) {
+        gsap.from(aboutRef.current.querySelectorAll(".about-col-1, .about-col-2 p, .tab-titles, .tab-contents"), {
+          opacity: 0,
+          y: 50,
+          stagger: 0.1,
+          duration: 0.5,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: aboutRef.current,
+            start: "top center",
+            end: "center center",
+            scrub: false,
+          },
+        });
+      }
+
+      // Animate the contact section
+      if (contactLeftRef.current && contactRightRef.current) {
+        gsap.from(contactLeftRef.current, {
+          opacity: 0,
+          y: 50,
+          duration: 0.5,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: contactLeftRef.current,
+            start: "top center",
+            end: "center center",
+            scrub: false,
+          },
+        });
+
+        gsap.from(contactRightRef.current, {
+          opacity: 0,
+          y: 50,
+          duration: 0.5,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: contactRightRef.current,
+            start: "top center",
+            end: "center center",
+            scrub: false,
+          },
+        });
+      }
+    }
+  }, []); // Run on mount
+
+  useEffect(() => {
+    const sidemenu = document.getElementById("sidemenu");
+    if (sidemenu) {
+      sidemenu.style.right = "-200px"; // Initialize the sidemenu position
+    }
+  }, []);
+
+  const openmenu = () => {
+    const sidemenu = document.getElementById("sidemenu");
+    if (sidemenu) {
+      sidemenu.style.right = "0";
+    }
+  };
+
+  const closemenu = () => {
+    const sidemenu = document.getElementById("sidemenu");
+    if (sidemenu) {
+      sidemenu.style.right = "-200px";
+    }
+  };
+
+  const opentab = (tabname) => {
+    setActiveTab(tabname);
+  };
 
   return (
     <>
@@ -23,9 +126,9 @@ function App() {
           <li>
             <a href="#contact">Contact</a>
           </li>
-          <i className="fas fa-times" onclick="closemenu()" />
+          <i className="fas fa-times" onClick={closemenu} />
         </ul>
-        <i className="fas fa-bars" onclick="openmenu()" />
+        <i className="fas fa-bars" onClick={openmenu} />
       </nav>
       <div className="header-text">
         <p>Beauty Advocate</p>
@@ -57,17 +160,20 @@ function App() {
             odit officia, est vel cumque voluptate atque qui.
           </p>
           <div className="tab-titles">
-            <p className="tab-links active-link" onclick="opentab('skills')">
+            <p className={`tab-links ${activeTab === "skills" ? "active-link" : ""}`}
+                  onClick={() => opentab("skills")}>
               Skills
             </p>
-            <p className="tab-links" onclick="opentab('experience')">
+            <p className={`tab-links ${activeTab === "experience" ? "active-link" : ""}`}
+                  onClick={() => opentab("experience")}>
               Experience
             </p>
-            <p className="tab-links" onclick="opentab('education')">
+            <p className={`tab-links ${activeTab === "education" ? "active-link" : ""}`}
+                  onClick={() => opentab("education")}>
               Education
             </p>
           </div>
-          <div className="tab-contents active-tab" id="skills">
+          <div id="skills" className={`tab-contents ${activeTab === "skills" ? "active-tab" : ""}`}>
             <ul>
               <li>
                 <span>Beauty</span>
@@ -86,7 +192,7 @@ function App() {
               </li>
             </ul>
           </div>
-          <div className="tab-contents" id="experience">
+          <div id="experience" className={`tab-contents ${activeTab === "experience" ? "active-tab" : ""}`}>
             <ul>
               <li>
                 <span>Current</span>
@@ -105,7 +211,7 @@ function App() {
               </li>
             </ul>
           </div>
-          <div className="tab-contents" id="education">
+          <div id="education" className={`tab-contents ${activeTab === "education" ? "active-tab" : ""}`}>
             <ul>
               <li>
                 <span>Current</span>
@@ -126,6 +232,13 @@ function App() {
           </div>
         </div>
       </div>
+    </div>
+  </div>
+  <div id="Resume">
+    <div className="container">
+      <a href="images/my-cv.pdf" className="btn">
+              View CV
+            </a>
     </div>
   </div>
   {/*Services*/}
@@ -241,9 +354,6 @@ function App() {
                 <i className="fab fa-linkedin" />
               </a>
             </div>
-            <a href="images/my-cv.pdf" className="btn">
-              Download CV
-            </a>
           </div>
         </div>
         <div className="contact-right">
